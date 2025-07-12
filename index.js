@@ -17,6 +17,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use("/api/products", productsRoute)
 app.use("/api/orders", orderRoute)
 
+app.get("/", (req, res)=>{
+    res.send("Welcome to Homepage of Ecommerce API")
+})
+
 app.listen(PORT, () => {
     console.log("Server is running on PORT:", PORT)
 })

@@ -35,10 +35,7 @@ const productSchema = mongoose.Schema({
     stock: { type: Number, required: true },
     images: [{ url: String }] // optional: show different image per variant
   }],
-  images: [{
-    url: { type: String, required: true },
-    isMain: { type: Boolean, default: false }
-  }],
+  images: [String],
   coverImage: String,
   category: String,
   subCategory: String,

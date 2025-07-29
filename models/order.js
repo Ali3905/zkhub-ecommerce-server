@@ -20,14 +20,13 @@ const orderItemSchema = mongoose.Schema({
         required: true,
         min: [1, "Quantity must be at least 1"]
     },
-    dialColor: {
+    color: {
         type: String,
         required: true,
         trim: true
     },
-    strapColor: {
+    model: {
         type: String,
-        required: true,
         trim: true
     },
     size: {
@@ -75,12 +74,6 @@ const addressSchema = mongoose.Schema({
         minlength: [2, "Last name must be at least 2 characters"],
         maxlength: [50, "Last name cannot exceed 50 characters"]
     },
-    country: {
-        type: String,
-        required: true,
-        trim: true,
-        minlength: [2, "Country must be at least 2 characters"]
-    },
     state: {
         type: String,
         required: true,
@@ -94,12 +87,12 @@ const addressSchema = mongoose.Schema({
         minlength: [10, "Address must be at least 10 characters"],
         maxlength: [200, "Address cannot exceed 200 characters"]
     },
-    postalCode: {
-        type: String,
-        required: true,
-        trim: true,
-        match: [/^[0-9A-Z\s-]{3,10}$/i, "Please enter a valid postal code"]
-    },
+    // postalCode: {
+    //     type: String,
+    //     trim: true,
+        // required: true,
+        // match: [/^[0-9A-Z\s-]{3,10}$/i, "Please enter a valid postal code"]
+    // },
     city: {
         type: String,
         required: true,

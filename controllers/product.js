@@ -27,16 +27,14 @@ async function handleCreateProduct(req, res) {
             variants,
             category,
             subCategory,
-            gender,
-            sizes,
             images,
             coverImage
         } = req.body;
 
         // Validate required fields
-        if (!title || !description || !brandName || !strapType || !price?.retail || !price?.display || !variants || !variants.length) {
+        if (!title || !description || !brandName || !price?.retail || !price?.display || !variants || !variants.length) {
             return res.status(400).json({
-                error: "Missing required fields: title, description, brandName, strapType, price.retail, price.display, or variants."
+                error: "Missing required fields: title, description, brandName, price.retail, price.display, or variants."
             });
         }
 
@@ -45,7 +43,6 @@ async function handleCreateProduct(req, res) {
             subTitle,
             description,
             brandName,
-            strapType,
             price: {
                 retail: price.retail,
                 display: price.display || null
@@ -53,8 +50,6 @@ async function handleCreateProduct(req, res) {
             variants,
             category,
             subCategory,
-            gender,
-            sizes,
             images,
             coverImage
         });

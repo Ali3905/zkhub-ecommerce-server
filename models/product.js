@@ -24,14 +24,9 @@ const productSchema = mongoose.Schema({
       default: null
     }
   },
-  strapType: {
-    type: String,
-    enum: ["CHAIN", "BELT"],
-    required: true
-  },
   variants: [{
-    dialColor: { type: String, required: true },
-    strapColor: { type: String, required: true },
+    model: { type: String },
+    color: { type: String, required: true },
     stock: { type: Number, required: true },
     images: [{ url: String }] // optional: show different image per variant
   }],
@@ -39,17 +34,6 @@ const productSchema = mongoose.Schema({
   coverImage: String,
   category: String,
   subCategory: String,
-  gender: {
-    type: String,
-    enum: ["MALE", "FEMALE", "KIDS", "UNISEX"],
-  },
-  sizes: {
-    type: [{
-      type: String,
-      enum: ["XS", "S", "M", "L", "XL", "XXL"]
-    }],
-    default: []
-  },
   sales: {
     type: Number,
     default: 0

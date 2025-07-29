@@ -6,7 +6,6 @@ const mongoose = require("mongoose");
 
 // Create new order
 const createOrder = async (req, res) => {
-
     try {
         const { items, shippingAddress, billingAddress, paymentMethod, shippingCost = 0, tax = 0, discount = 0 } = req.body;
 
@@ -47,22 +46,22 @@ const createOrder = async (req, res) => {
             }
 
             // Check stock availability
-            const { dialColor, strapColor } = item;
-            if (!dialColor || !strapColor) {
+            const { color, model } = item;
+            if (!color && !model) {
                 return res.status(400).json({
                     success: false,
-                    message: `Both dialColor and strapColor are required for product "${product.title}"`
+                    message: `Both color and model are required for product "${product.title}"`
                 });
             }
 
             const matchingVariantIndex = product.variants.findIndex(variant =>
-                variant.dialColor === dialColor && variant.strapColor === strapColor
+                variant.color === color && variant.model === model
             );
 
             if (matchingVariantIndex === -1) {
                 return res.status(400).json({
                     success: false,
-                    message: `No matching variant found for dialColor "${dialColor}" and strapColor "${strapColor}" in product "${product.title}"`
+                    message: `No matching variant found for color "${color}" and model "${model}" in product "${product.title}"`
                 });
             }
 
@@ -103,8 +102,8 @@ const createOrder = async (req, res) => {
                 },
                 quantity: item.quantity,
                 size: item.size || null,
-                dialColor,
-                strapColor,
+                color,
+                model,
                 unitPrice,
                 totalPrice
             };
